@@ -15,3 +15,7 @@ $ brew services start postgresql
 # create your database
 $ createdb mydb
 ```
+
+
+## Resources:
+- [Autocomplete postgresql client](https://github.com/dbcli/pgcli)
