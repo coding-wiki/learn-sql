@@ -12,9 +12,18 @@ $ initdb /usr/local/var/postgres
 # start the postgres server
 $ brew services start postgresql
 
-# create your database
+# create your database where mydb is your desired database name
 $ createdb mydb
 ```
+
+Then to login to the database, use `psql mydb`.
+
+To setup autocomplete for PostgreSQL, you can install pgcli with brew:
+```bash
+brew install pgcli
+```
+and login to the database with `pgcli mydb`.
+
 
 
 ## Resources:
