@@ -26,7 +26,7 @@ and login to the database with `pgcli mydb`.
 
 
 ## Installing PostgreSQL on Linux (Debian-based)
-Run these commands to install Postgre
+Run these commands to install Postgres
 ```bash
 # Update package list
 sudo apt-get update
@@ -51,6 +51,14 @@ CREATE DATABASE test;
 CREATE USER testuser;
 
 GRANT ALL PRIVILEGES ON DATABASE test TO testuser;
+```
+
+To avoid using a user account:
+```bash
+#ignore /etc/postgresql/$(ls /usr/local/Cellar/postgresql)
+
+#bash automation
+echo 'local   all             all                                     trust' >> $(psql -t -d postgres -c $'SHOW hba_file;')
 ```
 
 
