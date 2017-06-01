@@ -32,7 +32,7 @@ Run these commands to install Postgres
 sudo apt-get update
 
 # Install postgresql and postgresql-contrib (additional modules such as UUID)
-sudo apt-get install postgresql postgresql-contrib
+sudo apt-get -y install postgresql postgresql-contrib
 
 # Set a shell variable to currently logged in user
 MY_USERNAME=$(whoami)
