@@ -3,17 +3,27 @@
 ## Installing PostgreSQL on Mac
 Run these commands to install:
 ```bash
-# install postgresql
-$ brew install postgresql
+(
+  # install postgresql
+  brew install postgresql
 
-# initialise database
-$ initdb /usr/local/var/postgres
+  # initialise database
+  initdb /usr/local/var/postgres
 
-# start the postgres server
-$ brew services start postgresql
+  # start the postgres server
+  brew services start postgresql
 
-# create your database where mydb is your desired database name
-$ createdb mydb
+  # Get user input for database name
+  echo 'Please input your desired database name, such as mydb'
+  read db_name
+  
+  # Get logged in username
+  MY_USERNAME=$(whoami)
+
+  # create your database where mydb is your desired database name and create database with your username to allow using just 'psql'
+  createdb $db_name
+  createdb MY_USERNAME
+);
 ```
 
 Then to login to the database, use `psql mydb`.
