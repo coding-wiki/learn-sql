@@ -15,14 +15,14 @@ Run these commands to install:
 
   # Get user input for database name
   echo 'Please input your desired database name, such as mydb'
-  read db_name
+  read PSQL_DB_NAME
   
   # Get logged in username
-  MY_USERNAME=$(whoami)
+  PSQL_MY_USERNAME=$(whoami)
 
   # create your database where mydb is your desired database name and create database with your username to allow using just 'psql'
-  createdb $db_name
-  createdb MY_USERNAME
+  createdb $PSQL_DB_NAME
+  createdb $PSQL_MY_USERNAME
 );
 ```
 
@@ -45,13 +45,13 @@ sudo apt-get update
 sudo apt-get -y install postgresql postgresql-contrib
 
 # Set a shell variable to currently logged in user
-MY_USERNAME=$(whoami)
+PSQL_MY_USERNAME=$(whoami)
 
 # Create a new postgres user for the currently logged in user
-sudo -u postgres createuser $MY_USERNAME
+sudo -u postgres createuser $PSQL_MY_USERNAME
 
 # Create a new postgres user for the currently logged in user
-sudo -u postgres createdb $MY_USERNAME
+sudo -u postgres createdb $PSQL_MY_USERNAME
 ```
 
 Run `psql` to access the Postgre CLI, then proceed to run these SQL commands:
