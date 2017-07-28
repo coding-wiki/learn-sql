@@ -72,3 +72,29 @@ HAVING     -- selects among the groups defined by the GROUP BY clause.
 ORDER BY   -- specifies an order in which to return the rows.
 AS         -- provides an alias which can be used to temporarily rename tables or columns.
 ```
+
+### If/switch statements in SQL
+
+You can use a switch syntax in SQL.
+
+Syntax inside a `SELECT ... FROM <table>`:
+```sql
+CASE WHEN (<condition>) THEN
+  <value>
+ELSE
+  <value>
+END AS <column_name>
+```
+
+Example
+```sql
+SELECT name,
+
+	CASE WHEN (percentage > 50) THEN
+		'large'
+	ELSE
+		'small'
+	END AS size
+
+	FROM table_name;
+```
