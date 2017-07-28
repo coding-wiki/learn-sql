@@ -18,6 +18,7 @@ In `psql`:
 ## Top Commands:
 ```
 \q                  -- quit psql
+\d                  -- list databases
 \d                  -- list of tables
 \c [DATABASE-NAME]  -- Connect to a database
 ```
