@@ -50,3 +50,25 @@ psql <database-name>
 ```sql
 \c <database-name>
 ```
+
+## SQL Commands
+An SQL command has to start with a command such as `SELECT` or `INSERT INTO` and end with a semi-colon: `;`
+
+## Getting Data
+Command syntax of `SELECT`:
+```sql
+SELECT <row_1>, <row_2> FROM <table_name>
+-- Where row_1 is required, row_2, etc are optional and comma separated
+-- row_1 is the name of the SQL row, or you can use * to select all rows
+-- table_name is the name of the SQL table
+
+```
+
+Optional parameters appended to previous syntax statement:
+```sql
+WHERE      -- specifies which rows to retrieve.
+GROUP      -- BY groups rows sharing a property so that an aggregate function can be applied to each group.
+HAVING     -- selects among the groups defined by the GROUP BY clause.
+ORDER BY   -- specifies an order in which to return the rows.
+AS         -- provides an alias which can be used to temporarily rename tables or columns.
+```
