@@ -60,22 +60,50 @@ sudo -u psql -c "ALTER USER $PSQL_MY_USERNAME WITH SUPERUSER"
 
 An alternative to making your user a superuser, is to always use `sudo -u postgres <command like psql or createdb here>`
 
-Run `psql` to access the Postgre CLI, then proceed to run these SQL commands:
+To use `psql`, you need to use `psql` from a user account with the necessary priveleges or `sudo -u postgres psql`.
+
+To setup a database with privileges for a new user (if you want to use per-user privileges):
 ```sql
-CREATE DATABASE test;
+CREATE DATABASE <database name here>;
 
-CREATE USER testuser;
+CREATE USER <desired username to connect to database>;
 
-GRANT ALL PRIVILEGES ON DATABASE test TO testuser;
+GRANT ALL PRIVILEGES ON DATABASE <database name here> TO <desired username entered previously>;
 ```
 
-To avoid using a user account:
+Alternative to avoid using `sudo -u postgres`:
 ```bash
 #ignore /etc/postgresql/$(ls /usr/local/Cellar/postgresql)
 
 #bash automation
 echo 'local   all             all                                     trust' >> $(psql -t -d postgres -c $'SHOW hba_file;')
 ```
+
+### If you have issues with outdated versions, use these steps:
+1. If postgres is installed already, uninstall it with `sudo apt-get remove postgres postgres-contrib`
+2. Depending on your system, run the appropriate command:
+
+  - **FOR Ubuntu 17.04 ONLY:**
+    ```sh
+    deb http://apt.postgresql.org/pub/repos/apt/ zesty-pgdg main
+    ```
+  
+  - **FOR Ubuntu 16.04 ONLY:**
+    ```sh
+    deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+    ```
+  
+  - **FOR Ubuntu 14.04 ONLY:**
+    ```sh
+    deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+    ```
+  
+3. **Then run:**
+  ```sh
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+  sudo apt-key add -
+  sudo apt-get update
+  ```
 
 
 ## Resources:
