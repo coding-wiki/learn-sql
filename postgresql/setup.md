@@ -52,7 +52,13 @@ sudo -u postgres createuser $PSQL_MY_USERNAME
 
 # Create a new postgres user for the currently logged in user
 sudo -u postgres createdb $PSQL_MY_USERNAME
+
+# Superuser/root roles shouldn't exist in production, since permissions should be granted per-database
+# See below code block for alternative
+sudo -u psql -c "ALTER USER $PSQL_MY_USERNAME WITH SUPERUSER"
 ```
+
+An alternative to making your user a superuser, is to always use `sudo -u postgres <command like psql or createdb here>`
 
 Run `psql` to access the Postgre CLI, then proceed to run these SQL commands:
 ```sql
