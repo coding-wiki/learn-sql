@@ -29,11 +29,6 @@ Running `psql` is equivalent to `psql <your computer username>`
 
 **Congratulations! You've got PostgreSQL setup on Mac (hopefully).**
 
-If you'd like to add autocomplete for PostgreSQL, you can install pgcli with brew:
-```bash
-brew install pgcli
-```
-and login to the database with `pgcli <database name>`.
 
 
 
@@ -132,6 +127,24 @@ Alternative to avoid using `sudo -u postgres`:
 echo 'local   all             all                                     trust' >> $(psql -t -d postgres -c $'SHOW hba_file;')
 ```
 
+## Bonus - Installing an autocomplete client
+*Pgcli* is an alternative command line interface (client) for Postgres with auto-completion and syntax highlighting.
+
+### Autocomplete on Mac
+You can install `pgcli` with brew:
+```bash
+brew install pgcli
+```
+and login to databases with `pgcli` instead of `psql`.
+
+### Autocomplete on Linux
+You can install `pgcli` with the Python package manager, `pip`:
+```bash
+sudo apt-get install python-pip
+sudo apt-get install libpq-dev python-dev
+sudo pip install pgcli
+```
+and login to databases with `pgcli` instead of `psql`.
 
 
 ## Resources:
