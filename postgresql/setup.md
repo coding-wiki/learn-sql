@@ -8,7 +8,6 @@ Contents
 ### Mac Instructions
 Run these commands to install:
 ```bash
-(
   # install postgresql
   brew install postgresql
 
@@ -23,7 +22,6 @@ Run these commands to install:
 
   # create database with your username (from environment variable)
   createdb $PSQL_MY_USERNAME
-);
 ```
 
 Then to test that you can login to the database, use `psql`.
