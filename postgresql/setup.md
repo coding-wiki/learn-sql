@@ -47,7 +47,7 @@ PSQL_MY_USERNAME=$(whoami)
 # Create a new postgres user for the currently logged in user
 sudo -u postgres createuser $PSQL_MY_USERNAME --superuser
 
-# Create a new postgres user for the currently logged in user
+# Create a new postgres database for the currently logged in user
 sudo -u postgres createdb $PSQL_MY_USERNAME
 
 # 
@@ -60,6 +60,22 @@ Running `psql` is equivalent to `psql <your computer username>`
 
 **Congratulations! You've got PostgreSQL setup on Linux (hopefully).**
 
+**If you're using Arch Linux, try this:**
+
+```sh
+# Install postgresql and postgresql-contrib (additional modules such as UUID)
+sudo pacman -S postgresql postgresql-contrib
+# Set a shell variable to currently logged in user
+PSQL_MY_USERNAME=$(whoami)
+# Initialise database:
+sudo -u postgres initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data'
+# Create a new postgres (super)user for the currently logged in user
+sudo -u postgres createuser $PSQL_MY_USERNAME --superuser
+# Create a new postgres database for the currently logged in user
+sudo -u postgres createdb $PSQL_MY_USERNAME
+# Logout as _postgres_ user:
+[postgres]$ exit
+```
 
 
 ### If you have issues with outdated versions (on *Debian*), use these steps:
