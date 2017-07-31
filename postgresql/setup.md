@@ -153,11 +153,18 @@ brew install pgcli
 ```
 and login to databases with `pgcli` instead of `psql`.
 
-### Autocomplete on Linux
+### Autocomplete on Linux
 You can install `pgcli` with the Python package manager, `pip`:
 ```bash
-sudo apt-get install python-pip
+# Either this: Debian install
+sudo apt-get install python-pip 
 sudo apt-get install libpq-dev python-dev
+
+# Or this:Redhat systems
+sudo yum install python-pip
+sudo yum install postgresql-devel python-devel
+
+# Then run this:
 sudo pip install pgcli
 ```
 and login to databases with `pgcli` instead of `psql`.
