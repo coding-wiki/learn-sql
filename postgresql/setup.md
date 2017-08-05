@@ -1,42 +1,39 @@
 # PostgreSQL Setup
 
-## Installing PostgreSQL on Mac
+## Installation
+Contents
+- [Mac instructions](#mac-instructions)
+- [Linux instructions](#linux-instructions)
+
+### Mac Instructions
 Run these commands to install:
 ```bash
-(
   # install postgresql
   brew install postgresql
 
-  # initialise database
-  initdb /usr/local/var/postgres
+  # uncomment and run below if you experience problems:
+  #initdb /usr/local/var/postgres
 
   # start the postgres server
   brew services start postgresql
-
-  # Get user input for database name
-  echo 'Please input your desired database name, such as mydb'
-  read PSQL_DB_NAME
   
-  # Get logged in username
+  # Set logged in username to environment variable
   PSQL_MY_USERNAME=$(whoami)
 
-  # create your database where mydb is your desired database name and create database with your username to allow using just 'psql'
-  createdb $PSQL_DB_NAME
+  # create database with your username (from environment variable)
   createdb $PSQL_MY_USERNAME
-);
 ```
 
-Then to login to the database, use `psql mydb`.
+Then to test that you can login to the database, use `psql`.
+Running `psql` is equivalent to `psql <your computer username>`
 
-To setup autocomplete for PostgreSQL, you can install pgcli with brew:
-```bash
-brew install pgcli
-```
-and login to the database with `pgcli mydb`.
+**Congratulations! You've got PostgreSQL setup on Mac (hopefully).**
 
 
-## Installing PostgreSQL on Linux (Debian-based)
-Run these commands to install Postgres
+
+
+### Linux Instructions
+Run these commands to install Postgres on **Debian/Ubuntu**
 ```bash
 # Update package list
 sudo apt-get update
@@ -48,38 +45,38 @@ sudo apt-get -y install postgresql postgresql-contrib
 PSQL_MY_USERNAME=$(whoami)
 
 # Create a new postgres user for the currently logged in user
-sudo -u postgres createuser $PSQL_MY_USERNAME
+sudo -u postgres createuser $PSQL_MY_USERNAME --superuser
 
-# Create a new postgres user for the currently logged in user
+# Create a new postgres database for the currently logged in user
 sudo -u postgres createdb $PSQL_MY_USERNAME
 
-# Superuser/root roles shouldn't exist in production, since permissions should be granted per-database
-# See below code block for alternative
-sudo -u psql -c "ALTER USER $PSQL_MY_USERNAME WITH SUPERUSER"
+# 
+# 
+# sudo -u postgres psql -c "ALTER USER $PSQL_MY_USERNAME WITH SUPERUSER"
 ```
 
-An alternative to making your user a superuser, is to always use `sudo -u postgres <command like psql or createdb here>`
+Then to test that you can login to the database, use `psql`.
+Running `psql` is equivalent to `psql <your computer username>`
 
-To use `psql`, you need to use `psql` from a user account with the necessary priveleges or `sudo -u postgres psql`.
+**Congratulations! You've got PostgreSQL setup on Linux (hopefully).**
 
-To setup a database with privileges for a new user (if you want to use per-user privileges):
-```sql
-CREATE DATABASE <database name here>;
+**If you're using Arch Linux, try this:**
 
-CREATE USER <desired username to connect to database>;
-
-GRANT ALL PRIVILEGES ON DATABASE <database name here> TO <desired username entered previously>;
+```sh
+# Install postgresql and postgresql-contrib (additional modules such as UUID)
+sudo pacman -S postgresql postgresql-contrib
+# Set a shell variable to currently logged in user
+PSQL_MY_USERNAME=$(whoami)
+# Initialise database:
+sudo -u postgres initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data'
+# Create a new postgres (super)user for the currently logged in user
+sudo -u postgres createuser $PSQL_MY_USERNAME --superuser
+# Create a new postgres database for the currently logged in user
+sudo -u postgres createdb $PSQL_MY_USERNAME
 ```
 
-Alternative to avoid using `sudo -u postgres`:
-```bash
-#ignore /etc/postgresql/$(ls /usr/local/Cellar/postgresql)
 
-#bash automation
-echo 'local   all             all                                     trust' >> $(psql -t -d postgres -c $'SHOW hba_file;')
-```
-
-### If you have issues with outdated versions, use these steps:
+### If you have issues with outdated versions (on *Debian*), use these steps:
 1. If postgres is installed already, uninstall it with `sudo apt-get remove postgres postgres-contrib`
 2. Depending on your system, run the appropriate command:
 
@@ -104,6 +101,71 @@ echo 'local   all             all                                     trust' >> 
   sudo apt-key add -
   sudo apt-get update
   ```
+
+
+
+
+## Creating databases
+To create a database, run:
+```sh
+createdb <database name>
+```
+
+And to connect to it, run:
+```sh
+psql <database name>
+```
+
+## User Permissions
+
+Security note: Superuser/root roles shouldn't exist in **production**, since permissions should be granted per-database.
+
+An alternative to making your user a superuser, is to always use `sudo -u postgres <command like psql or createdb here>`
+
+
+If you'd like to use per-user privileges for a database:
+
+```sql
+CREATE DATABASE <database name here>;
+
+CREATE USER <desired username to connect to database>;
+
+GRANT ALL PRIVILEGES ON DATABASE <database name here> TO <desired username entered previously>;
+```
+
+Alternative to avoid using `sudo -u postgres`:
+```bash
+#ignore /etc/postgresql/$(ls /usr/local/Cellar/postgresql)
+
+#bash automation
+echo 'local   all             all                                     trust' >> $(psql -t -d postgres -c $'SHOW hba_file;')
+```
+
+## Bonus - Installing an autocomplete client
+*Pgcli* is an alternative command line interface (client) for Postgres with auto-completion and syntax highlighting.
+
+### Autocomplete on Mac
+You can install `pgcli` with brew:
+```bash
+brew install pgcli
+```
+and login to databases with `pgcli` instead of `psql`.
+
+### Autocomplete on Linux
+You can install `pgcli` with the Python package manager, `pip`:
+```bash
+# Either this: Debian install
+sudo apt-get install python-pip 
+sudo apt-get install libpq-dev python-dev
+
+# Or this:Redhat systems
+sudo yum install python-pip
+sudo yum install postgresql-devel python-devel
+
+# Then run this:
+sudo pip install pgcli
+```
+and login to databases with `pgcli` instead of `psql`.
 
 
 ## Resources:
