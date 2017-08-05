@@ -73,8 +73,6 @@ sudo -u postgres initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data'
 sudo -u postgres createuser $PSQL_MY_USERNAME --superuser
 # Create a new postgres database for the currently logged in user
 sudo -u postgres createdb $PSQL_MY_USERNAME
-# Logout as _postgres_ user:
-[postgres]$ exit
 ```
 
 
