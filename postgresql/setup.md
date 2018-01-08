@@ -30,7 +30,8 @@ Running `psql` is equivalent to `psql <your computer username>`
 **Congratulations! You've got PostgreSQL setup on Mac (hopefully).**
 
 
-
+> If you have trouble with the `CLI` instructions, the Postgres Mac GUI app can be used as a last resort :)
+> https://postgresapp.com/
 
 ### Linux Instructions
 Run these commands to install Postgres on **Debian/Ubuntu**
