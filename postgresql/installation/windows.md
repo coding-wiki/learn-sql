@@ -62,6 +62,10 @@ To exit `postgres=#` enter: `\q` or use the shortcut key: `Ctrl` + `D`
 
 ## Creating Your First Database
 
+(Reference for environment variable substitution)
+
+![bash-env-variables-postgresql-instructions](https://github.com/coding-wiki/learn-sql/raw/master/resources/bash-env-variables-postgresql-instructions.gif)
+
 ```bash
 # Set a shell variable to currently logged in user
 PSQL_MY_USERNAME=$(whoami)
