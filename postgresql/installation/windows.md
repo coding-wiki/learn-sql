@@ -104,9 +104,25 @@ Inside our `psql` shell, run: `\du` to check the users. You should see something
 ![image](https://user-images.githubusercontent.com/6757532/78057539-ca941f80-737e-11ea-8488-68cf8d85636c.png)
 
 
+## Troubleshooting
+
+If you get the error `PANIC: could not flush dirty data: Function not implemented`, you can try this:
+
+```sh
+sudo nano /etc/postgresql/10/main/postgresql.conf
+```
+
+and append this line to the end of the file:
+
+```
+data_sync_retry = true.
+```
+
+(`Ctrl` + `O` and press `Y` to save, and `Ctrl` + `D` to exit `nano`)
+
 ## Resources
 
 If you need help debugging problems, try: https://medium.com/@karansingh1559/how-to-set-up-postgresql-on-ubuntu-for-wsl-fcbb777d165b
 
 - [Get started using MongoDB or PostgreSQL with Node.js on Windows](https://docs.microsoft.com/en-us/windows/nodejs/databases#prerequisites)
-  - [LICENSE – Creative Commons Attribution](https://github.com/MicrosoftDocs/windows-uwp/blob/docs/LICENSE)
+  - [LICENSE of the Microsoft docs – Creative Commons Attribution](https://github.com/MicrosoftDocs/windows-uwp/blob/docs/LICENSE)
