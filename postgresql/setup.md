@@ -7,6 +7,9 @@ Contents
 
 ### Mac Instructions
 Run these commands to install:
+
+> in bash: (normal Terminal window)
+
 ```bash
   # install postgresql
   brew install postgresql
@@ -27,6 +30,8 @@ Run these commands to install:
 Then to test that you can login to the database, use `psql`.
 Running `psql` is equivalent to `psql <your computer username>`
 
+> To **exit `psql`** (`postgres=#`) enter: `\q` or use the shortcut key: `Ctrl` + `D`. This will quit the `psql` shell and return you to `bash` (normal Terminal).
+
 **Congratulations! You've got PostgreSQL setup on Mac (hopefully).**
 
 
@@ -35,6 +40,9 @@ Running `psql` is equivalent to `psql <your computer username>`
 
 ### Linux Instructions
 Run these commands to install Postgres on **Debian/Ubuntu**
+
+> in `bash` (normal Terminal window)
+
 ```bash
 # Update package list
 sudo apt-get update
@@ -58,6 +66,8 @@ sudo -u postgres createdb $PSQL_MY_USERNAME
 
 Then to test that you can login to the database, use `psql`.
 Running `psql` is equivalent to `psql <your computer username>`
+
+> To **exit `psql`** (`postgres=#`) enter: `\q` or use the shortcut key: `Ctrl` + `D`. This will quit the `psql` shell and return you to `bash` (normal Terminal).
 
 **Congratulations! You've got PostgreSQL setup on Linux (hopefully).**
 
