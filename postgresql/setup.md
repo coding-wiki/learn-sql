@@ -4,6 +4,7 @@
 Contents
 - [Mac instructions](#mac-instructions)
 - [Linux instructions](#linux-instructions)
+- [Windows instructions](./installation/windows.md)
 
 ### Mac Instructions
 Run these commands to install:
@@ -210,5 +211,4 @@ and login to databases with `pgcli` instead of `psql`.
 ## Resources:
 - [Autocomplete postgresql client](https://github.com/dbcli/pgcli)
 - [Installing PostgreSQL on Linux](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
-- [Windows :O](https://www.bigsql.org/package-manager.jsp/)
 - [dwyl/learn-postgresql](https://github.com/dwyl/learn-postgresql)
